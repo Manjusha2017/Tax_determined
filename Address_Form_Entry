@@ -1,0 +1,32 @@
+document.getElementById('taxForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the form from submitting normally
+
+    // Get form values
+    const name = document.getElementById('name').value;
+    const address = document.getElementById('address').value;
+    const state = document.getElementById('state').value;
+
+    // Determine state tax rate
+    let taxRate;
+    switch (state) {
+        case 'CA':
+            taxRate = 0.075; // Example tax rate for California
+            break;
+        case 'TX':
+            taxRate = 0.065; // Example tax rate for Texas
+            break;
+        case 'NY':
+            taxRate = 0.085; // Example tax rate for New York
+            break;
+        default:
+            taxRate = 0; // Default tax rate
+    }
+
+    // Calculate tax (for demonstration purposes, let's assume a fixed amount)
+    const amount = 100; // Example amount
+    const tax = amount * taxRate;
+
+    // Display the result
+    const resultElement = document.getElementById('result');
+    resultElement.textContent = `Hello ${name}, the state tax for your address in ${state} is $${tax.toFixed(2)}.`;
+});
